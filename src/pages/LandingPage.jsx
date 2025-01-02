@@ -15,11 +15,10 @@ import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const [visibleSections, setVisibleSections] = useState([]);
-
   const navigate = useNavigate();
 
   const handleSignInClick = () => {
-    navigate('/login');
+    navigate('/signup');
   };
   const observer = useRef(
     new IntersectionObserver(
@@ -59,7 +58,7 @@ const LandingPage = () => {
         </nav>
         <div className="actions">
         <button className="sign-in" onClick={handleSignInClick}>Sign in</button>
-          <button className="get-demo"><a href="https://calendly.com/groverswastik/30min" target='_blank'><i class='bx bx-phone'></i> Free call</a></button>
+          <button className="get-demo"><a href="https://calendly.com/groverswastik/30min" target='_blank'><i className='bx bx-phone'></i> Free call</a></button>
         </div>
       </header>
 
