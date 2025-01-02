@@ -1,0 +1,50 @@
+.pricing__container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .pricing__card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pricing__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing__price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0D47A1;
+    margin-bottom: 1rem;
+  }
+  
+  .pricing__features {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+  }
+  
+  .pricing__features li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .pricing__button {
+    background-color: #0D47A1;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pricing__button:hover {
+    background-color: #0D47A1;
+  }
+  
