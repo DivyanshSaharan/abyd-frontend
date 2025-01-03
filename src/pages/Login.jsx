@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import './Login.css';
 import assets from '../assets/assets';
 
@@ -10,7 +10,6 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Handle form submission for login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -19,16 +18,16 @@ const LoginPage = () => {
         password,
       });
 
-      if (response.data.success) {
-        // On successful login, store token in localStorage and redirect to dashboard
+      if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
         navigate('/dashboard');
+        setError(response.data.message || 'Login successful');
       } else {
         setError(response.data.message || 'Login failed');
       }
     } catch (err) {
       console.error('Login error:', err);
-      setError('An error occurred. Please try again.');
+      setError(err.response?.data.message || 'An error occurred. Please try again.');
     }
   };
 

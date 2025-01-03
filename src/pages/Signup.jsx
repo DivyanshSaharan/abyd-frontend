@@ -5,6 +5,7 @@ import './Signup.css';
 import assets from '../assets/assets';
 
 const SignupPage = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,19 +16,24 @@ const SignupPage = () => {
 
     try {
       const response = await axios.post('http://localhost:8000/auth/signup', {
+        username,
         email,
         password,
       });
 
-      if (response.data.success) {
-        localStorage.setItem('authToken', response.data.token);
-        navigate('/dashboard');
+      if (response.status === 201) {
+        setError(response.data.message);
+        navigate('/onboarding');
       } else {
         setError(response.data.message || 'Signup failed');
       }
     } catch (err) {
       console.error('Signup error:', err);
-      setError('An error occurred. Please try again.');
+      if (err.response) {
+        setError(err.response.data.message || 'An error occurred. Please try again.');
+      } else {
+        setError('An error occurred. Please try again.');
+      }
     }
   };
 
@@ -46,21 +52,9 @@ const SignupPage = () => {
           <div className="form-group">
             <input
               type="text"
-              placeholder="First name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Last name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Startup name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
               required
             />
           </div>
